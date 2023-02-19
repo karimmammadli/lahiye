@@ -4,7 +4,7 @@ const photo = document.getElementById("compfoto");
 let comps;
 
 const modal = document.getElementById("modal-click");
-const saxla = document.getElementsByClassName("saxla");
+const saxla = document.getElementById("saxla");
 
 const yazilan = document.getElementById("yazilan");
 
@@ -16,13 +16,12 @@ modal.addEventListener("click",function(i){
   i.preventDefault();
 })
 
-saxla.addEventListener("click",function(e){
-  e.preventDefault();
+ saxla.addEventListener("click",function(){
   comps = {
     compname: cname.value,
     price: price.value,
     photo: photo.value,
-    ID: users[userIndex].fname
+    owner: users[userIndex].username
   }
   users[userIndex].comps.push(comps);
 
@@ -35,12 +34,12 @@ users[userIndex].comps.forEach((comp,i) => {
   showCompsOnPage(comp);
 });
 
-function showCompsOnPage(obj){
+function showCompsOnPage(comps,i){
  let txt =`</tr>
- <td class="my-1">${obj.ID}</td>
- <td class="my-1">${obj.name}</td>
- <img class="w-100" src="${obj.photo}" alt="">
- <td class="my-1">${obj.price}</td>
+ <td class="my-1">${comps.owner}</td>
+ <td class="my-1">${comps.compname}</td>
+ <img class="w-100" src="${comps.photo}" alt="a">
+ <td class="my-1">${comps.price}</td>
  <button class="text-success edit" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="${i}">Edit</button>
  <button class="text-danger remove" id="${i}">Remove</button>
   </tr>`;
